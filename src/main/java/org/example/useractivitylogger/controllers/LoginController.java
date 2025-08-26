@@ -106,15 +106,23 @@ public class LoginController {
     private AuthService authService;
 
     public void initialize() {
-        authService = new AuthService();
+        try {
+            authService = new AuthService();
 
-        // Load logo image (put logo.png in resources/images/)
-        InputStream logoStream = getClass().getResourceAsStream("/images/logo.png");
-        if (logoStream != null) {
-            logoImageView.setImage(new Image(logoStream));
+            // Load logo image (put logo.png in resources/images/)
+            InputStream logoStream = getClass().getResourceAsStream("/images/logo.png");
+            if (logoStream != null) {
+                logoImageView.setImage(new Image(logoStream));
+            } else {
+                System.err.println("Logo image not found!");
+            }
+
+            loginButton.setOnAction(e -> handleLogin());
+
+        } catch (Exception ex) {
+            System.err.println("Error during initialization: " + ex.getMessage());
+            ex.printStackTrace();
         }
-
-        loginButton.setOnAction(e -> handleLogin());
     }
 
     @FXML
@@ -133,12 +141,15 @@ public class LoginController {
             messageLabel.setText("Login successful as " + result.role);
             openDashboard(result.role);
         } else {
+            System.out.println(result.message);
             messageLabel.setText("Login failed: " + result.message);
         }
     }
 
     private void openDashboard(String role) {
-        String fxmlFile = role.equals("admin") ? "/fxml/admin_dashboard.fxml" : "/fxml/staff_dashboard.fxml";
+        String fxmlFile = role.equals("admin")
+                ? "/org/example/useractivitylogger/admin_dashboard.fxml"
+                : "/org/example/useractivitylogger/staff_dashboard.fxml";
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));

@@ -1,54 +1,61 @@
 package org.example.useractivitylogger.services;
 
-import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
-import org.bson.Document;
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import io.github.cdimascio.dotenv.Dotenv;
+
+import java.sql.*;
 
 public class AuthService {
 
-    private final MongoClient mongoClient;
-    private final MongoDatabase database;
-    private final MongoCollection<Document> usersCollection;
+    private final Connection connection;
 
     public AuthService() {
-        // Connect to MongoDB
-        System.setProperty("jdk.tls.client.protocols", "TLSv1.2");
-
-        mongoClient = MongoClients.create("mongodb+srv://USER1:simplecity@great9it.miwhuju.mongodb.net/?retryWrites=true&w=majority&appName=Great9it");
-        database = mongoClient.getDatabase("UserLogger");
-        usersCollection = database.getCollection("users");
+        this.connection = DatabaseService.getConnection();
     }
 
     public LoginResult login(String username, String password) {
-        // Fetch user document from DB
-        Document userDoc = usersCollection.find(Filters.eq("email", username)).first();
+        String sql = "SELECT password, role FROM users WHERE email = ?";
 
-        if (userDoc == null) {
-            return new LoginResult(false, null, "User not found");
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, username);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (!rs.next()) {
+                    return new LoginResult(false, null, "User not found");
+                }
+
+                String storedHashedPassword = rs.getString("password");
+                String role = rs.getString("role");
+
+                // Verify password using BCrypt
+                BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), storedHashedPassword);
+
+                if (!result.verified) {
+                    return new LoginResult(false, null, "Incorrect password");
+                }
+
+                return new LoginResult(true, role, "Login successful");
+            }
+        } catch (SQLException e) {
+            return new LoginResult(false, null, "Error: " + e.getMessage());
         }
-        String storedHashedPassword = userDoc.getString("password");
-        String role = userDoc.getString("role");
-
-        // Check password
-        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), storedHashedPassword);
-
-        if (!result.verified) {
-            return new LoginResult(false, null, "Incorrect password");
-        }
-
-        // Successful login
-        return new LoginResult(true, role, "Login successful");
     }
 
     public void close() {
-        mongoClient.close();
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("✅ MySQL connection closed.");
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error closing MySQL connection: " + e.getMessage());
+        }
     }
 
-    // Helper class to represent login outcome
+    // Inner class for login results
     public static class LoginResult {
         public final boolean success;
-        public final String role; // "staff" or "admin"
+        public final String role;
         public final String message;
 
         public LoginResult(boolean success, String role, String message) {

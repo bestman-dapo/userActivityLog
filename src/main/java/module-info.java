@@ -5,6 +5,8 @@ module org.example.useractivitylogger {
     requires org.mongodb.driver.core;
     requires org.mongodb.bson;
     requires bcrypt;
+    requires io.github.cdimascio.dotenv.java;
+    requires java.sql;
 
     exports org.example.useractivitylogger;
     exports org.example.useractivitylogger.controllers to javafx.fxml;
