@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.useractivitylogger.controllers.AdminDashboardController"
+            prefWidth="1200" prefHeight="700" style="-fx-background-color: #F5F5F5;">
+
+    <!-- Sidebar -->
+    <left>
+        <AnchorPane fx:id="sidebar" prefWidth="250" style="-fx-background-color: #1E88E5;">
+            <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <Button fx:id="toggleSidebarBtn" text="☰" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18px;" />
+                <Button fx:id="menuDashboard" text="Dashboard" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16px; -fx-cursor: hand;" />
+                <Button fx:id="menuManageStaff" text="Manage Staff" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16px; -fx-cursor: hand;" />
+                <Button fx:id="menuReports" text="Reports" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16px; -fx-cursor: hand;" />
+                <Button fx:id="menuSettings" text="Settings" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16px; -fx-cursor: hand;" />
+            </VBox>
+        </AnchorPane>
+    </left>
+
+    <!-- Top Bar -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-background-color: #EEEEEE;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Admin Dashboard" style="-fx-font-size: 20px; -fx-text-fill: #1E88E5; -fx-font-weight: bold;" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label text="Logged in as: " style="-fx-font-size: 14px; -fx-text-fill: #555;" />
+            <Label fx:id="loggedInUserLabel" text="admin@example.com" style="-fx-font-size: 14px; -fx-text-fill: #1E88E5; -fx-font-weight: bold;" />
+            <Button fx:id="logoutButton" text="Logout" style="-fx-background-color: #E53935; -fx-text-fill: white; -fx-padding: 5 15; -fx-font-size: 13px; -fx-cursor: hand;" />
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane fx:id="mainContent" style="-fx-background-color: white;" />
+    </center>
+</BorderPane>

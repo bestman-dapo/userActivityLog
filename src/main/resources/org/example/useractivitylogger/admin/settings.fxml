@@ -1,0 +1,9 @@
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefWidth="900" prefHeight="600"
+            style="-fx-background-color: #FFFFFF;">
+    <Label text="Settings" layoutX="30" layoutY="30"
+           style="-fx-font-size: 24px; -fx-text-fill: #1E88E5; -fx-font-weight: bold;"/>
+    <Label text="Configure your application preferences here." layoutX="30" layoutY="80"
+           style="-fx-font-size: 16px; -fx-text-fill: #555;"/>
+</AnchorPane>

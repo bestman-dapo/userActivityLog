@@ -82,6 +82,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.useractivitylogger.services.AuthService;
 import org.example.useractivitylogger.services.AuthService.LoginResult;
+import org.example.useractivitylogger.sessions.UserSession;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -138,6 +139,7 @@ public class LoginController {
         LoginResult result = authService.login(username, password);
 
         if (result.success) {
+            UserSession.initSession(result.id, result.username);
             messageLabel.setText("Login successful as " + result.role);
             openDashboard(result.role);
         } else {
@@ -148,7 +150,7 @@ public class LoginController {
 
     private void openDashboard(String role) {
         String fxmlFile = role.equals("admin")
-                ? "/org/example/useractivitylogger/admin_dashboard.fxml"
+                ? "/org/example/useractivitylogger/admin/admin_dashboard.fxml"
                 : "/org/example/useractivitylogger/staff_dashboard.fxml";
 
         try {
@@ -158,8 +160,8 @@ public class LoginController {
             stage.setScene(scene);
             stage.setTitle(role.substring(0, 1).toUpperCase() + role.substring(1) + " Dashboard");
         } catch (IOException e) {
-            messageLabel.setText("Failed to load dashboard.");
-            e.printStackTrace();
+            messageLabel.setText(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 

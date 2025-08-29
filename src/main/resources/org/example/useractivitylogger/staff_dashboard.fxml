@@ -7,7 +7,17 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.useractivitylogger.controllers.StaffDashboardController"
             prefWidth="960" prefHeight="600" style="-fx-background-color: #F5F5F5;">
 
-    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+    <!-- Top Bar -->
+    <VBox spacing="10" alignment="TOP_RIGHT" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="20">
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Label text="Logged in as: " style="-fx-font-size: 14px; -fx-text-fill: #555;" />
+            <Label fx:id="loggedInUserLabel" text="user@example.com" style="-fx-font-size: 14px; -fx-text-fill: #1E88E5; -fx-font-weight: bold;" />
+        </HBox>
+        <Button fx:id="logoutButton" text="Logout" style="-fx-background-color: #E53935; -fx-text-fill: white; -fx-padding: 5 15; -fx-font-size: 13px;" />
+    </VBox>
+
+
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="80" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
 
         <!-- Header -->
         <Label text="Staff Dashboard" style="-fx-font-size: 24px; -fx-text-fill: #1E88E5; -fx-font-weight: bold;" />
@@ -15,7 +25,7 @@
         <!-- Clock In / Clock Out Buttons -->
         <HBox spacing="20" alignment="CENTER">
             <Button fx:id="clockInButton" text="Clock In" style="-fx-background-color: #1E88E5; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
-            <Button fx:id="clockOutButton" text="Clock Out" style="-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
+            <Button fx:id="clockOutButton" text="Clock Out" style="-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-cursor: hand;" />
         </HBox>
 
         <!-- Task Summary Input -->

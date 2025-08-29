@@ -1,12 +1,19 @@
 package org.example.useractivitylogger.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 import org.example.useractivitylogger.models.ActivityLog;
 import org.example.useractivitylogger.services.ActivityService;
+import org.example.useractivitylogger.sessions.UserSession;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class StaffDashboardController {
@@ -15,14 +22,22 @@ public class StaffDashboardController {
     @FXML private TextArea taskSummaryArea;
     @FXML private TableView<ActivityLog> activityTable;
     @FXML private TableColumn<ActivityLog, String> colClockIn, colClockOut, colTaskSummary;
+    @FXML private Label loggedInUserLabel;
+    @FXML private Button logoutButton;
 
     private final ActivityService activityService = new ActivityService();
     private final ObservableList<ActivityLog> activityLogs = FXCollections.observableArrayList();
 
-    private int userId = 1; // Example, should be set from login
+    private int userId = UserSession.getInstance().getUserId(); // Example, should be set from login
 
     @FXML
     public void initialize() {
+        logoutButton.setOnAction(event -> handleLogout());
+        logoutButton.setCursor(Cursor.HAND);
+
+        String email = UserSession.getInstance().getUsername(); // or getEmail()
+        loggedInUserLabel.setText(email);
+
         colClockIn.setCellValueFactory(data -> data.getValue().clockInProperty());
         colClockOut.setCellValueFactory(data -> data.getValue().clockOutProperty());
         colTaskSummary.setCellValueFactory(data -> data.getValue().taskSummaryProperty());
@@ -101,6 +116,23 @@ public class StaffDashboardController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void handleLogout() {
+        // Clear session
+        UserSession.clearSession();
+
+        // Load login screen
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/useractivitylogger/login.fxml"));
+            Parent loginRoot = loader.load();
+
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setScene(new Scene(loginRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
