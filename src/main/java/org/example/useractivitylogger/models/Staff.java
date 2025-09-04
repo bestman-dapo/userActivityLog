@@ -27,7 +27,7 @@ public class Staff {
         this.lastName = new SimpleStringProperty(lastName);
         this.position = new SimpleStringProperty(position);
         this.password = new SimpleStringProperty(password);
-        this.email = new SimpleStringProperty();
+        this.email = new SimpleStringProperty(email);
         this.presentDays = new SimpleIntegerProperty(presentDays);
     }
 
