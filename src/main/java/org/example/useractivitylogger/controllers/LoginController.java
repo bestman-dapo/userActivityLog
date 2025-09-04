@@ -111,7 +111,7 @@ public class LoginController {
             authService = new AuthService();
 
             // Load logo image (put logo.png in resources/images/)
-            InputStream logoStream = getClass().getResourceAsStream("/images/logo.png");
+            InputStream logoStream = getClass().getResourceAsStream("/logo_new.png");
             if (logoStream != null) {
                 logoImageView.setImage(new Image(logoStream));
             } else {

@@ -8,7 +8,7 @@ public class Staff {
     private final StringProperty lastName;
     private final StringProperty position;
     private final StringProperty password;
-    private StringProperty email = null;
+    private final StringProperty email;
     private final IntegerProperty presentDays;
 
 //    public Staff(int id, String firstName, String lastName, String position, String email, int presentDays) {
@@ -27,7 +27,7 @@ public class Staff {
         this.lastName = new SimpleStringProperty(lastName);
         this.position = new SimpleStringProperty(position);
         this.password = new SimpleStringProperty(password);
-        this.email = new SimpleStringProperty();
+        this.email = new SimpleStringProperty(email);
         this.presentDays = new SimpleIntegerProperty(presentDays);
     }
 

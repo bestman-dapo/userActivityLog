@@ -10,7 +10,7 @@
         <VBox spacing="20" alignment="TOP_LEFT" style="-fx-padding: 20;">
 
             <!-- Page Title -->
-            <Label text="Manage Staff" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1E88E5;" />
+            <Label text="Manage Staff" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1abc9c, #000000;" />
 
             <!-- Form Section -->
             <VBox spacing="15" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f4f4f4; -fx-border-color: #ddd; -fx-border-radius: 10; -fx-background-radius: 10;">
@@ -47,7 +47,7 @@
                 </VBox>
 
                 <Button text="Add Staff" fx:id="btnAddStaff"
-                        style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 300; -fx-background-radius: 6;" />
+                        style="-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 300; -fx-background-radius: 6;" />
             </VBox>
 
             <!-- Staff Table -->

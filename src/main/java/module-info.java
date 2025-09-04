@@ -11,5 +11,5 @@ module org.example.useractivitylogger {
     exports org.example.useractivitylogger;
     exports org.example.useractivitylogger.controllers to javafx.fxml;
     opens org.example.useractivitylogger to javafx.fxml, javafx.graphics;
-    opens org.example.useractivitylogger.controllers to javafx.fxml;
+    opens org.example.useractivitylogger.controllers to javafx.fxml, javafx.base;
 }

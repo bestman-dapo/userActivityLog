@@ -22,7 +22,6 @@ public class ManageStaffController {
     @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
     @FXML private Button btnAddStaff;
-
     @FXML private TableView<Staff> tblStaff;
     @FXML private TableColumn<Staff, String> colFirstName;
     @FXML private TableColumn<Staff, String> colLastName;

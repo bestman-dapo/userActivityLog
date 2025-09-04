@@ -12,7 +12,7 @@
       spacing="20" alignment="TOP_LEFT" style="-fx-padding: 20;">
 
     <!-- Page Title -->
-    <Label text="Dashboard Overview" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1E88E5;" />
+    <Label text="Dashboard Overview" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1abc9c, #000000;" />
     <Label text="Welcome to the Admin Dashboard" style="-fx-font-size: 14px; -fx-text-fill: #555;" />
 
     <!-- KPI Section -->
