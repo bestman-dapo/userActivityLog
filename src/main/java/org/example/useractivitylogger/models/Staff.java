@@ -8,7 +8,7 @@ public class Staff {
     private final StringProperty lastName;
     private final StringProperty position;
     private final StringProperty password;
-    private StringProperty email = null;
+    private final StringProperty email;
     private final IntegerProperty presentDays;
 
 //    public Staff(int id, String firstName, String lastName, String position, String email, int presentDays) {

@@ -53,7 +53,7 @@ public class ReportsController {
     }
 
     private void connectDB() {
-        Connection connection = DatabaseService.getConnection();
+        this.connection = DatabaseService.getConnection();
     }
 
     private void setupTable() {
@@ -89,7 +89,9 @@ public class ReportsController {
                    COALESCE(COUNT(DISTINCT DATE(l.clock_in_time)), 0) AS days_worked
             FROM users u
             LEFT JOIN user_activity_log l 
-                ON u.id = l.user_id AND MONTH(l.clock_in_time) = MONTH(CURRENT_DATE())
+                ON u.id = l.user_id 
+                -- AND MONTH(l.clock_in_time) = MONTH(CURDATE())
+                -- AND YEAR(l.clock_in_time) = YEAR(CURDATE())
         """;
 
             if (staffName != null && !staffName.isEmpty()) {

@@ -18,7 +18,7 @@
                 <Label text="Filter by Staff:" style="-fx-font-size: 14px;"/>
                 <ComboBox fx:id="cmbStaffFilter" promptText="Select Staff" style="-fx-pref-width: 200;"/>
                 <Button text="Apply Filter" fx:id="btnApplyFilter"
-                        style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                        style="-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-weight: bold;"/>
                 <Button text="Clear Filter" fx:id="btnClearFilter"
                         style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold;"/>
             </HBox>

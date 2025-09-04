@@ -8,14 +8,13 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.useractivitylogger.controllers.LoginController"
-            stylesheets="@style.css"
-            prefWidth="960" prefHeight="540">
+            stylesheets="@style.css">
 
     <HBox spacing="0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <!-- Left Pane -->
-        <VBox fx:id="leftPane" alignment="CENTER" spacing="20.0" prefWidth="480" styleClass="left-pane">
+        <VBox fx:id="leftPane" alignment="CENTER" spacing="20.0"  styleClass="left-pane" HBox.hgrow="ALWAYS">
             <VBox spacing="20.0" alignment="CENTER">
-                <ImageView fx:id="logoImageView" fitHeight="60" fitWidth="180" />
+                <ImageView fx:id="logoImageView" fitHeight="90" fitWidth="100" />
                 <Label text="Sign in to MasterMind" styleClass="title-label"/>
             </VBox>
 
@@ -32,7 +31,7 @@
         </VBox>
 
         <!-- Right Pane -->
-        <VBox alignment="CENTER" spacing="10.0" prefWidth="480" styleClass="right-pane">
+        <VBox alignment="CENTER" spacing="10.0" styleClass="right-pane" HBox.hgrow="ALWAYS">
             <Label text="Welcome Back!," styleClass="welcome-label"/>
             <Label text="Enter your personal details&#10;and continue your journey with us." styleClass="subtext-label"/>
 

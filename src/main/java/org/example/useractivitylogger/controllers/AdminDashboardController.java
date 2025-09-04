@@ -39,8 +39,7 @@ public class AdminDashboardController {
     @FXML
     private Button menuReports;
 
-    @FXML
-    private Button menuSettings;
+
 
     @FXML
     private Button toggleSidebarBtn;
@@ -98,7 +97,7 @@ public class AdminDashboardController {
         menuDashboard.setOnAction(event -> loadView("/org/example/useractivitylogger/admin/dashboard.fxml"));
         menuManageStaff.setOnAction(event -> loadView("/org/example/useractivitylogger/admin/manage_staff.fxml"));
         menuReports.setOnAction(event -> loadView("/org/example/useractivitylogger/admin/reports.fxml"));
-        menuSettings.setOnAction(event -> loadView("/org/example/useractivitylogger/admin/settings.fxml"));
+
 
         // ✅ Load default view (Dashboard)
         loadView("/org/example/useractivitylogger/admin/dashboard.fxml");
