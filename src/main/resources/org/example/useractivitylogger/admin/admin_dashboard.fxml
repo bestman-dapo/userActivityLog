@@ -26,7 +26,7 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Admin Dashboard" style="-fx-font-size: 20px; -fx-text-fill:  #1abc9c, #000000; -fx-font-weight: bold;" />
+<!--            <Label text="Admin Dashboard" style="-fx-font-size: 20px; -fx-text-fill:  #1abc9c, #000000; -fx-font-weight: bold;" />-->
             <Pane HBox.hgrow="ALWAYS" />
             <Label text="Logged in as: " style="-fx-font-size: 14px; -fx-text-fill: #555;" />
             <Label fx:id="loggedInUserLabel" text="admin@example.com" style="-fx-font-size: 14px; -fx-text-fill: #555; -fx-font-weight: bold;" />

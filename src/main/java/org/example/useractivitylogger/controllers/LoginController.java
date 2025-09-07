@@ -80,6 +80,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.example.useractivitylogger.StageUtils;
 import org.example.useractivitylogger.services.AuthService;
 import org.example.useractivitylogger.services.AuthService.LoginResult;
 import org.example.useractivitylogger.sessions.UserSession;
@@ -159,9 +160,19 @@ public class LoginController {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle(role.substring(0, 1).toUpperCase() + role.substring(1) + " Dashboard");
+
+            // ✅ Always maximize window
+            stage.setMaximized(true);
+
+            StageUtils.applyMinimumSize(stage);
+
+            // OR for true fullscreen (optional)
+            // stage.setFullScreen(true);
+            // stage.setFullScreenExitHint(""); // removes the "press ESC to exit" hint
+
         } catch (IOException e) {
-            messageLabel.setText(e.getMessage());
-            System.out.println(e.getMessage());
+            messageLabel.setText("Failed to load dashboard: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

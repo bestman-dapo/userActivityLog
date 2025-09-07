@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.TableRow;
 import org.example.useractivitylogger.models.ActivityLog;
 
 public class DashboardController {
@@ -40,6 +40,10 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
+        colTaskSummary.setPrefWidth(400);
+        colTaskSummary.setMaxWidth(500);
+        tblRecentAttendance.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//        tblRecentAttendance.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         updateTotalStaff();
         updatePresentAbsentToday();
 
@@ -51,6 +55,55 @@ public class DashboardController {
 
         // Load data
         loadRecentAttendance();
+
+        // Add hover + click interactivity
+        tblRecentAttendance.setRowFactory(tv -> {
+            TableRow<ActivityLog> row = new TableRow<>();
+
+            // Hover effects
+            row.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> {
+                if (!row.isEmpty()) {
+                    row.setCursor(isNowHovered ? Cursor.HAND : Cursor.DEFAULT);
+                    row.setStyle(isNowHovered ? "-fx-background-color: #f1f8e9;" : "");
+                }
+            });
+
+            // Click to show details
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 1) {
+                    ActivityLog log = row.getItem();
+                    showAttendanceDetailsModal(log);
+                }
+            });
+
+            return row;
+        });
+    }
+
+    private void showAttendanceDetailsModal(ActivityLog log) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Attendance Details");
+
+        StringBuilder content = new StringBuilder();
+        content.append("Staff: ").append(log.getStaffName()).append("\n");
+        content.append("Clock In: ").append(log.getClockIn()).append("\n");
+        content.append("Clock Out: ").append(
+                log.getClockOut() != null ? log.getClockOut() : "Not clocked out"
+        ).append("\n\n");
+        content.append("Task Submitted:\n").append(
+                log.getTaskSummary() != null && !log.getTaskSummary().isEmpty()
+                        ? log.getTaskSummary()
+                        : "No task submitted."
+        );
+
+        TextArea detailsArea = new TextArea(content.toString());
+        detailsArea.setEditable(false);
+        detailsArea.setWrapText(true);
+
+        dialog.getDialogPane().setContent(detailsArea);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+
+        dialog.showAndWait();
     }
 
     public void updateTotalStaff() {
@@ -102,7 +155,6 @@ public class DashboardController {
                 String clockOut = rs.getString("clock_out_time");
                 String taskSummary = rs.getString("task_summary");
 
-                // Create a proper ActivityLog object
                 ActivityLog log = new ActivityLog(name, clockIn, clockOut, taskSummary);
                 data.add(log);
             }
