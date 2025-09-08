@@ -4,40 +4,59 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.useractivitylogger.controllers.StaffDashboardController"
-            prefWidth="960" prefHeight="600" style="-fx-background-color:#004d4d, #009999;">
+<?import javafx.scene.effect.DropShadow?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.useractivitylogger.controllers.StaffDashboardController"
+            prefWidth="960" prefHeight="600"
+            style="-fx-background-color:#004d4d, #009999; -fx-padding: 20;">
 
     <!-- Top Bar -->
     <VBox spacing="10" alignment="TOP_RIGHT" AnchorPane.topAnchor="10" AnchorPane.rightAnchor="20">
         <HBox spacing="10" alignment="CENTER_RIGHT">
-            <Label text="Logged in as: " style="-fx-font-size: 14px; -fx-text-fill: white;" />
-            <Label fx:id="loggedInUserLabel" text="user@example.com" style="-fx-font-size: 14px; -fx-text-fill:white; -fx-font-weight: bold;" />
+            <Label text="Logged in as: " style="-fx-font-size: 16px; -fx-text-fill: #e0f2f1;" />
+            <Label fx:id="loggedInUserLabel" text="user@example.com" style="-fx-font-size: 16px; -fx-text-fill:#ffffff; -fx-font-weight: bold;" />
         </HBox>
-        <Button fx:id="logoutButton" text="Logout" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-padding: 5 15; -fx-font-size: 13px;" />
+        <Button fx:id="logoutButton" text="Logout"
+                style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 6 18; -fx-background-radius: 8; -fx-cursor: hand;" />
     </VBox>
 
-
-    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="80" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+    <VBox spacing="25" alignment="TOP_CENTER" AnchorPane.topAnchor="80" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
 
         <!-- Header -->
-        <Label text="Staff Dashboard" style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;" />
+        <Label text="Staff Dashboard" style="-fx-font-size: 28px; -fx-text-fill: #e0f2f1; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0.5, 1, 1);" />
 
         <!-- Clock In / Clock Out Buttons -->
-        <HBox spacing="20" alignment="CENTER">
-            <Button fx:id="clockInButton" text="Clock In" style="-fx-background-color:  #43A047; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
-            <Button fx:id="clockOutButton" text="Clock Out" style="-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-cursor: hand;" />
+        <HBox spacing="25" alignment="CENTER">
+            <Button fx:id="clockInButton" text="Clock In"
+                    style="-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10 25; -fx-background-radius: 8; -fx-cursor: hand;">
+                <effect>
+                    <DropShadow radius="8" offsetX="3" offsetY="3" color="#333333"/>
+                </effect>
+            </Button>
+            <Button fx:id="clockOutButton" text="Clock Out"
+                    style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10 25; -fx-background-radius: 8; -fx-cursor: hand;" >
+                <effect>
+                    <DropShadow radius="8" offsetX="3" offsetY="3" color="#333333"/>
+                </effect>
+            </Button>
         </HBox>
 
         <!-- Task Summary Input -->
-        <VBox spacing="10" maxWidth="600">
-            <Label text="Daily Task Summary:" style="-fx-font-size: 16px; -fx-text-fill: white;" />
-            <TextArea fx:id="taskSummaryArea" prefRowCount="4" wrapText="true" style="-fx-font-size: 14px; -fx-padding: 10;" />
-            <Button fx:id="submitTaskButton" text="Submit Task" style="-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
+        <VBox spacing="12" maxWidth="600">
+            <Label text="Daily Task Summary:" style="-fx-font-size: 18px; -fx-text-fill: #e0f2f1; -fx-font-weight: bold;" />
+            <TextArea fx:id="taskSummaryArea" prefRowCount="4" wrapText="true"
+                      style="-fx-font-size: 16px; -fx-background-radius: 8; -fx-background-color: #66bb6a;" />
+            <Button fx:id="submitTaskButton" text="Submit Task"
+                    style="-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10 25; -fx-background-radius: 8; -fx-cursor: hand;" >
+                <effect>
+                    <DropShadow radius="8" offsetX="3" offsetY="3" color="#333333"/>
+                </effect>
+            </Button>
         </VBox>
 
         <!-- Activity Log Table -->
-        <VBox spacing="10" maxWidth="800">
-            <Label text="Your Daily Activity Log" style="-fx-font-size: 18px; -fx-text-fill:white;" />
+        <VBox spacing="12" maxWidth="800">
+            <Label text="Your Daily Activity Log" style="-fx-font-size: 20px; -fx-text-fill:#e0f2f1; -fx-font-weight: bold;" />
             <TableView fx:id="activityTable" prefHeight="300">
                 <columns>
                     <TableColumn text="Clock In" fx:id="colClockIn" prefWidth="200" />

@@ -13,10 +13,11 @@ public class AuthService {
     }
 
     public LoginResult login(String username, String password) {
-        String sql = "SELECT * FROM users WHERE email = ?";
+        String sql = "SELECT * FROM users WHERE email = ? OR username = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, username);
+            stmt.setString(2, username);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (!rs.next()) {

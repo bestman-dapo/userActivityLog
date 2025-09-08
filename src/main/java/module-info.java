@@ -7,9 +7,11 @@ module org.example.useractivitylogger {
     requires bcrypt;
     requires io.github.cdimascio.dotenv.java;
     requires java.sql;
+    requires org.fxmisc.richtext;
 
     exports org.example.useractivitylogger;
     exports org.example.useractivitylogger.controllers to javafx.fxml;
     opens org.example.useractivitylogger to javafx.fxml, javafx.graphics;
     opens org.example.useractivitylogger.controllers to javafx.fxml, javafx.base;
+    opens org.example.useractivitylogger.controls to javafx.fxml;
 }

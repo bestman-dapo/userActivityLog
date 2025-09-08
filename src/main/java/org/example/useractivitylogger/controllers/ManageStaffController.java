@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import org.example.useractivitylogger.models.Staff;
 import org.example.useractivitylogger.services.DatabaseService;
 
@@ -12,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ManageStaffController {
 
@@ -59,7 +62,23 @@ public class ManageStaffController {
         String position = txtPosition.getText().trim();
         String email = txtEmail.getText().trim();
         String password = txtPassword.getText().trim();
+
+        String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        Matcher matcher = pattern.matcher(email);
+
+        if (!matcher.matches()) {
+            // Invalid email
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Email");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a valid email address.");
+            alert.showAndWait();
+            return; // Stop execution
+        }
+
         String bcryptHash = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+
 
         if (firstName.isEmpty() || lastName.isEmpty() || position.isEmpty() || email.isEmpty() || password.isEmpty()) {
             showAlert("Validation Error", "Please fill all fields.");
@@ -151,5 +170,18 @@ public class ManageStaffController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+    @FXML
+    private void handleBtnHover(MouseEvent event) {
+        btnAddStaff.setStyle("-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 14px; "
+                + "-fx-pref-width: 320; -fx-background-radius: 8; -fx-padding: 10;");
+    }
+
+    @FXML
+    private void handleBtnExit(MouseEvent event) {
+        btnAddStaff.setStyle("-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-size: 14px; "
+                + "-fx-pref-width: 320; -fx-background-radius: 8; -fx-padding: 10;");
     }
 }

@@ -100,6 +100,8 @@ public class DashboardController {
         detailsArea.setEditable(false);
         detailsArea.setWrapText(true);
 
+        detailsArea.setStyle("-fx-font-size: 16px;");
+
         dialog.getDialogPane().setContent(detailsArea);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
 

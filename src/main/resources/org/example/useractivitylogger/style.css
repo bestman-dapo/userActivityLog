@@ -7,26 +7,26 @@
 }
 
 .title-label {
-    -fx-font-size: 24px;
+    -fx-font-size: 27.6px;  /* 24 * 1.15 */
     -fx-font-weight: bold;
     -fx-text-fill: linear-gradient(to right, #1abc9c, #000000);
 }
 
 .welcome-label {
-    -fx-font-size: 26px;
+    -fx-font-size: 29.9px;  /* 26 * 1.15 */
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 .subtext-label {
-    -fx-font-size: 14px;
+    -fx-font-size: 16.1px;  /* 14 * 1.15 */
     -fx-text-fill: white;
     -fx-text-alignment: center;
 }
 
 .input-field {
     -fx-background-color: #edf1f1;
-    -fx-font-size: 14px;
+    -fx-font-size: 16.1px;  /* 14 * 1.15 */
     -fx-pref-height: 40;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
@@ -35,12 +35,10 @@
 .login-button {
     -fx-background-color: #2ecc71;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 16.1px;  /* 14 * 1.15 */
     -fx-font-weight: bold;
     -fx-pref-width: 150;
     -fx-pref-height: 40;
     -fx-background-radius: 20;
     -fx-cursor: hand;
 }
-
-

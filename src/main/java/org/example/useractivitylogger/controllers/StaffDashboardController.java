@@ -1,14 +1,13 @@
 package org.example.useractivitylogger.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableRow;
 import javafx.stage.Stage;
 import org.example.useractivitylogger.models.ActivityLog;
 import org.example.useractivitylogger.services.ActivityService;
@@ -97,6 +96,8 @@ public class StaffDashboardController {
         TextArea detailsArea = new TextArea(content.toString());
         detailsArea.setEditable(false);
         detailsArea.setWrapText(true);
+
+        detailsArea.setStyle("-fx-font-size: 16px;");
 
         dialog.getDialogPane().setContent(detailsArea);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
