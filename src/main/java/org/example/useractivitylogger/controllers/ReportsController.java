@@ -311,8 +311,14 @@
         private int calculateWorkingDays(LocalDate date) {
             YearMonth yearMonth = YearMonth.from(date);
             int workingDays = 0;
+            LocalDate today = LocalDate.now();
+
             for (int day = 1; day <= yearMonth.lengthOfMonth(); day++) {
                 LocalDate d = LocalDate.of(yearMonth.getYear(), yearMonth.getMonth(), day);
+
+                if(d.isAfter(today)){
+break;
+                }
                 if (!(d.getDayOfWeek().name().equals("SATURDAY") || d.getDayOfWeek().name().equals("SUNDAY"))) {
                     workingDays++;
                 }

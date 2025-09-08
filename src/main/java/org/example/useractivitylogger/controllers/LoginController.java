@@ -109,6 +109,18 @@ public class LoginController {
 
     public void initialize() {
         try {
+            passwordField.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("ENTER")) {
+                    handleLogin();
+                }
+            });
+
+            usernameField.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("ENTER")) {
+                    passwordField.requestFocus(); // Optional: move to password field
+                }
+            });
+
             authService = new AuthService();
 
             // Load logo image (put logo.png in resources/images/)
