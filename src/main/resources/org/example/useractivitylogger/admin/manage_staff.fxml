@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.useractivitylogger.controllers.ManageStaffController"
+            fitToWidth="true" style="-fx-padding: 20;">
+    <content>
+        <VBox spacing="20" alignment="TOP_LEFT" style="-fx-padding: 20;">
+
+            <!-- Page Title -->
+            <Label text="Manage Staff" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1abc9c, #000000;" />
+
+            <!-- Form Section -->
+            <VBox alignment="CENTER" spacing="20"
+                  style="-fx-padding: 30; -fx-background-color: #ffffff; -fx-border-radius: 12; -fx-background-radius: 12;
+             -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 4);">
+
+                <!-- Form Title -->
+                <Label text="Add Staff"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+                <!-- Form Fields -->
+                <VBox spacing="12" alignment="CENTER_LEFT" style="-fx-pref-width: 320;">
+                    <Label text="First Name" style="-fx-font-weight: bold; -fx-font-size: 17px;" />
+                    <TextField fx:id="txtFirstName" promptText="Enter first name"
+                               style="-fx-pref-width: 320; -fx-background-radius: 6; -fx-padding: 6; -fx-font-size: 17px;" />
+                </VBox>
+
+                <VBox spacing="12" alignment="CENTER_LEFT" style="-fx-pref-width: 320;">
+                    <Label text="Last Name" style="-fx-font-weight: bold; -fx-font-size: 17px;" />
+                    <TextField fx:id="txtLastName" promptText="Enter last name"
+                               style="-fx-pref-width: 320; -fx-background-radius: 6; -fx-padding: 6; -fx-font-size: 17px;" />
+                </VBox>
+
+                <VBox spacing="12" alignment="CENTER_LEFT" style="-fx-pref-width: 320;">
+                    <Label text="Username" style="-fx-font-weight: bold; -fx-font-size: 17px;" />
+                    <TextField fx:id="txtUsername" promptText="Enter username"
+                               style="-fx-pref-width: 320; -fx-background-radius: 6; -fx-padding: 6; -fx-font-size: 17px;" />
+                </VBox>
+
+                <VBox spacing="12" alignment="CENTER_LEFT" style="-fx-pref-width: 320;">
+                    <Label text="Position" style="-fx-font-weight: bold; -fx-font-size: 17px;" />
+                    <TextField fx:id="txtPosition" promptText="Enter position"
+                               style="-fx-pref-width: 320; -fx-background-radius: 6; -fx-padding: 6; -fx-font-size: 17px;" />
+                </VBox>
+
+                <VBox spacing="12" alignment="CENTER_LEFT" style="-fx-pref-width: 320;">
+                    <Label text="Email" style="-fx-font-weight: bold; -fx-font-size: 17px;" />
+                    <TextField fx:id="txtEmail" promptText="Enter email"
+                               style="-fx-pref-width: 320; -fx-background-radius: 6; -fx-padding: 6; -fx-font-size: 17px;" />
+                </VBox>
+
+                <VBox spacing="12" alignment="CENTER_LEFT" style="-fx-pref-width: 320;">
+                    <Label text="Password" style="-fx-font-weight: bold; -fx-font-size: 17px;" />
+                    <PasswordField fx:id="txtPassword" promptText="Enter password"
+                                   style="-fx-pref-width: 320; -fx-background-radius: 6; -fx-padding: 6; -fx-font-size: 17px;" />
+                </VBox>
+
+                <!-- Button -->
+                <Button text="Add Staff" fx:id="btnAddStaff"
+                        style="-fx-background-color: #43A047; -fx-text-fill: white; -fx-font-size: 17px;
+                               -fx-pref-width: 320; -fx-background-radius: 8; -fx-padding: 10;"
+                        onMouseEntered="#handleBtnHover"
+                        onMouseExited="#handleBtnExit" />
+            </VBox>
+
+            <!-- Staff Table -->
+            <Label text="All Staff" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+            <TableView fx:id="tblStaff" prefHeight="300" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colFirstName" text="First Name" style="-fx-font-size: 17px;"/>
+                    <TableColumn fx:id="colLastName" text="Last Name" style="-fx-font-size: 17px;"/>
+                    <TableColumn text="Position" fx:id="colPosition" prefWidth="150" style="-fx-font-size: 17px;"/>
+                    <TableColumn text="Email" fx:id="colEmail" prefWidth="200" style="-fx-font-size: 17px;"/>
+                    <TableColumn text="Present Days (This Month)" fx:id="colPresentDays" prefWidth="200" style="-fx-font-size: 17px;"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+    </content>
+</ScrollPane>

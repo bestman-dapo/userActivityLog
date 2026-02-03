@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.useractivitylogger.controllers.DashboardController"
+            style="-fx-padding: 20;">
+
+    <VBox spacing="20" alignment="TOP_LEFT" style="-fx-padding: 20;"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <!-- Page Title -->
+        <Label text="Dashboard Overview"
+               style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #1abc9c;" />
+        <Label text="Welcome to the Admin Dashboard"
+               style="-fx-font-size: 16px; -fx-text-fill: #555;" />
+
+        <HBox spacing="20">
+            <VBox style="-fx-background-color: #2196F3; -fx-padding: 15; -fx-background-radius: 10;" prefWidth="200">
+                <Label text="Total Staff" style="-fx-text-fill: white; -fx-font-size: 16px;" />
+                <Label fx:id="lblTotalStaff" text="0" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;" />
+            </VBox>
+            <VBox style="-fx-background-color: #43A047; -fx-padding: 15; -fx-background-radius: 10;" prefWidth="200">
+                <Label text="Present Today" style="-fx-text-fill: white; -fx-font-size: 16px;" />
+                <Label fx:id="lblPresentToday" text="0" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;" />
+            </VBox>
+            <VBox style="-fx-background-color: #E53935; -fx-padding: 15; -fx-background-radius: 10;" prefWidth="200">
+                <Label text="Absent Today" style="-fx-text-fill: white; -fx-font-size: 16px;" />
+                <Label fx:id="lblAbsentToday" text="0" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;" />
+            </VBox>
+        </HBox>
+
+        <Label text="Recent Attendance Logs"
+               style="-fx-font-size: 21px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+        <TableView fx:id="tblRecentAttendance"
+                   VBox.vgrow="ALWAYS"
+                   maxHeight="500">
+            <columns>
+                <TableColumn text="Staff Name" fx:id="colStaffName" style="-fx-font-size: 16px;"/>
+                <TableColumn text="Clock In" fx:id="colClockIn" style="-fx-font-size: 16px;"/>
+                <TableColumn text="Clock Out" fx:id="colClockOut" style="-fx-font-size: 16px;"/>
+                <TableColumn text="Summary" fx:id="colTaskSummary" style="-fx-font-size: 16px;"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</AnchorPane>

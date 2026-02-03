@@ -80,8 +80,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.example.useractivitylogger.StageUtils;
 import org.example.useractivitylogger.services.AuthService;
 import org.example.useractivitylogger.services.AuthService.LoginResult;
+import org.example.useractivitylogger.sessions.UserSession;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -106,15 +108,35 @@ public class LoginController {
     private AuthService authService;
 
     public void initialize() {
-        authService = new AuthService();
+        try {
+            passwordField.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("ENTER")) {
+                    handleLogin();
+                }
+            });
 
-        // Load logo image (put logo.png in resources/images/)
-        InputStream logoStream = getClass().getResourceAsStream("/images/logo.png");
-        if (logoStream != null) {
-            logoImageView.setImage(new Image(logoStream));
+            usernameField.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("ENTER")) {
+                    passwordField.requestFocus(); // Optional: move to password field
+                }
+            });
+
+            authService = new AuthService();
+
+            // Load logo image (put logo.png in resources/images/)
+            InputStream logoStream = getClass().getResourceAsStream("/logo_new.png");
+            if (logoStream != null) {
+                logoImageView.setImage(new Image(logoStream));
+            } else {
+                System.err.println("Logo image not found!");
+            }
+
+            loginButton.setOnAction(e -> handleLogin());
+
+        } catch (Exception ex) {
+            System.err.println("Error during initialization: " + ex.getMessage());
+            ex.printStackTrace();
         }
-
-        loginButton.setOnAction(e -> handleLogin());
     }
 
     @FXML
@@ -130,15 +152,19 @@ public class LoginController {
         LoginResult result = authService.login(username, password);
 
         if (result.success) {
+            UserSession.initSession(result.id, result.username);
             messageLabel.setText("Login successful as " + result.role);
             openDashboard(result.role);
         } else {
+            System.out.println(result.message);
             messageLabel.setText("Login failed: " + result.message);
         }
     }
 
     private void openDashboard(String role) {
-        String fxmlFile = role.equals("admin") ? "/fxml/admin_dashboard.fxml" : "/fxml/staff_dashboard.fxml";
+        String fxmlFile = role.equals("admin")
+                ? "/org/example/useractivitylogger/admin/admin_dashboard.fxml"
+                : "/org/example/useractivitylogger/staff_dashboard.fxml";
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -146,8 +172,18 @@ public class LoginController {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle(role.substring(0, 1).toUpperCase() + role.substring(1) + " Dashboard");
+
+            // ✅ Always maximize window
+            stage.setMaximized(true);
+
+            StageUtils.applyMinimumSize(stage);
+
+            // OR for true fullscreen (optional)
+            // stage.setFullScreen(true);
+            // stage.setFullScreenExitHint(""); // removes the "press ESC to exit" hint
+
         } catch (IOException e) {
-            messageLabel.setText("Failed to load dashboard.");
+            messageLabel.setText("Failed to load dashboard: " + e.getMessage());
             e.printStackTrace();
         }
     }
